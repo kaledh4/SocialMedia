@@ -150,7 +150,7 @@ async function runEngine() {
     const redditSubs = config.R?.subreddits || [];
     console.log(`\n📰 Fetching ${redditSubs.length} Reddit subs...`);
     
-    for (const sub of redditSubs.slice(0, 2)) { // Test with first 2
+    for (const sub of redditSubs) {
         console.log(`  Fetching r/${sub}...`);
         const rssUrl = `https://www.reddit.com/r/${sub}/hot/.rss`;
         const xml = fetchRSS(rssUrl);
