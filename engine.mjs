@@ -18,6 +18,43 @@ const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
 
+// Importance scoring for ranking posts
+function scoreImportance(title, subreddit) {
+    let score = 50; // base score
+    const t = title.toLowerCase();
+    const s = subreddit.toLowerCase();
+
+    // High importance keywords
+    if (t.includes('breakthrough')) score += 40;
+    if (t.includes('announced') || t.includes('announcement')) score += 35;
+    if (t.includes('release') || t.includes('launched')) score += 30;
+    if (t.includes('first') || t.includes('world first')) score += 35;
+    if (t.includes('agi') || t.includes('asi') || t.includes('gpt-5')) score += 45;
+    if (t.includes('new model') || t.includes('open source')) score += 25;
+    if (t.includes('benchmark') || t.includes('comparison')) score += 20;
+    if (t.includes('update') && t.includes('available')) score += 15;
+    if (t.includes('price') && (t.includes('drop') || t.includes('surge'))) score += 25;
+    if (t.includes('tesla') || t.includes('spacex') || t.includes('elon')) score += 20;
+    
+    // Topic-specific boosts
+    if (s.includes('ai') || s.includes('llm') || s.includes('gpt')) {
+        if (t.includes('model') || t.includes('llama') || t.includes('claude')) score += 20;
+    }
+    if (s.includes('crypto') || s.includes('stock')) {
+        if (t.includes('bitcoin') || t.includes('btc') || t.includes('market')) score += 15;
+    }
+    if (s.includes('steam') || s.includes('gaming')) {
+        if (t.includes('steam deck') || t.includes('game pass')) score += 15;
+    }
+
+    // Reduce score for low-value content
+    if (t.includes('meme') || t.includes('shitpost')) score -= 30;
+    if (t.includes('help') && t.includes('?')) score -= 10; // Questions less important
+    if (t.includes('my ') || t.includes('i made') || t.includes('look at')) score -= 5; // Personal posts
+
+    return Math.max(0, Math.min(100, score)); // Clamp 0-100
+}
+
 // YouTube channel ID map (verified working)
 const CHANNEL_MAP = {
     '@SpaceX': 'UCtI0Hodo5o5dUb67FeUjDeA',
@@ -203,6 +240,7 @@ async function runEngine() {
     console.log('=== dash2 Intelligence Engine ===');
     console.log(`Started at ${new Date().toISOString()}`);
 
+    const allPosts = []; // Collect ALL posts, then rank
     const results = {
         date: new Date().toISOString().split('T')[0],
         R: [],
@@ -210,7 +248,7 @@ async function runEngine() {
         T: null
     };
 
-    // Reddit
+    // Reddit - fetch from all subreddits
     const redditSubs = config.R?.subreddits || [];
     console.log(`\n📰 Fetching ${redditSubs.length} Reddit subs...`);
     
@@ -221,20 +259,50 @@ async function runEngine() {
         
         if (xml && xml.includes('<entry>')) {
             const posts = parseRedditRSS(xml, sub);
-            if (posts.length > 0) {
-                results.R.push({
+            posts.forEach(post => {
+                // Score importance
+                const score = scoreImportance(post.title, sub);
+                allPosts.push({
+                    ...post,
                     subreddit: sub,
-                    posts: posts
+                    importance: score
                 });
-                console.log(`    ✓ Got ${posts.length} posts`);
-            }
+            });
+            console.log(`    ✓ Got ${posts.length} posts`);
         } else {
             console.log(`    ✗ Failed to fetch`);
         }
         
         // Delay to be nice
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 800));
     }
+
+    // Sort ALL posts by importance and take top 15
+    allPosts.sort((a, b) => b.importance - a.importance);
+    const top15 = allPosts.slice(0, 15);
+
+    // Group top 15 back by subreddit for the data structure
+    const groupedBySub = {};
+    top15.forEach(post => {
+        if (!groupedBySub[post.subreddit]) {
+            groupedBySub[post.subreddit] = [];
+        }
+        groupedBySub[post.subreddit].push({
+            title: post.title,
+            url: post.url,
+            summary: post.summary,
+            whyCare: post.whyCare,
+            author: post.author,
+            publishedAt: post.publishedAt,
+            score: 0,
+            num_comments: 0
+        });
+    });
+
+    results.R = Object.entries(groupedBySub).map(([sub, posts]) => ({
+        subreddit: sub,
+        posts: posts
+    }));
 
     // YouTube
     const ytChannels = config.Y?.channels || [];
@@ -278,7 +346,9 @@ async function runEngine() {
 
     // Summary
     console.log(`\n=== Summary ===`);
-    console.log(`Reddit: ${results.R.length} subreddits`);
+    console.log(`Fetched from ${redditSubs.length} subreddits`);
+    console.log(`Top 15 most important posts selected`);
+    console.log(`Subreddits with top posts: ${results.R.length}`);
     console.log(`YouTube: ${results.Y.length} videos`);
     console.log(`Twitter: Skipped`);
 
