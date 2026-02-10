@@ -81,63 +81,80 @@ function fetchRSS(url) {
 }
 
 function generateWhyCare(title, subreddit) {
-    // Generate a brief "why you should care" summary based on keywords
+    // Generate concise "why you should care" summary
     const t = title.toLowerCase();
     const s = subreddit.toLowerCase();
     
-    let why = [];
+    // Priority patterns - return immediately for high-value content
+    if (t.includes('breakthrough') || t.includes('world first') || t.includes('historic')) {
+        return '🚀 Major breakthrough';
+    }
+    if (t.includes('agi') || t.includes('asi') || t.includes('superintelligence')) {
+        return '🤖 AGI/ASI development';
+    }
+    if (t.includes('gpt-5') || t.includes('claude 4') || t.includes('gemini 2') || t.includes('llama 4')) {
+        return '🧠 Next-gen model news';
+    }
+    if (t.includes('announced') || t.includes('announcement') || t.includes('official')) {
+        return '📢 Official announcement';
+    }
+    if (t.includes('launch') && (t.includes('product') || t.includes('feature'))) {
+        return '🎯 New product launch';
+    }
+    if (t.includes('benchmark') || t.includes('beats') || t.includes('outperforms')) {
+        return '📊 Performance benchmark';
+    }
+    if (t.includes('price drop') || t.includes('discount') || t.includes('sale')) {
+        return '💰 Price alert';
+    }
+    if (t.includes('tesla') || t.includes('spacex') || t.includes('neuralink')) {
+        return '⚡ Musk company update';
+    }
+    if (t.includes('openai') || t.includes('anthropic') || t.includes('deepmind')) {
+        return '🏢 AI lab news';
+    }
+    if (t.includes('battery') && (t.includes('energy') || t.includes('density'))) {
+        return '🔋 Battery tech advance';
+    }
+    if (t.includes('solar') || t.includes('renewable') || t.includes('fusion')) {
+        return '☀️ Energy innovation';
+    }
     
-    // Technology breakthroughs
-    if (t.includes('breakthrough') || t.includes('discovery') || t.includes('first time')) {
-        why.push('Major advancement in the field');
-    }
-    if (t.includes('release') || t.includes('launch') || t.includes('announce')) {
-        why.push('New product or update available');
-    }
-    if (t.includes('update') || t.includes('patch') || t.includes('fix')) {
-        why.push('Important update to be aware of');
-    }
-    
-    // AI/Tech specific
-    if (s.includes('ai') || s.includes('artificial') || s.includes('llm') || s.includes('gpt')) {
-        if (t.includes('model') || t.includes('gpt') || t.includes('claude') || t.includes('llama')) {
-            why.push('AI model development news');
+    // Context-aware based on subreddit
+    if (s.includes('local_llama') || s.includes('llm') || s.includes('gpt')) {
+        if (t.includes('quantize') || t.includes('fine-tune') || t.includes('lora')) {
+            return '🔧 LLM technique';
         }
+        return '📱 Local AI news';
+    }
+    if (s.includes('invest') || s.includes('stock') || s.includes('crypto')) {
+        return '📈 Market insight';
+    }
+    if (s.includes('steam') || s.includes('gaming') || s.includes('deck')) {
+        return '🎮 Gaming update';
+    }
+    if (s.includes('hardware') || s.includes('framework') || s.includes('raspberry')) {
+        return '🖥️ Hardware news';
+    }
+    if (s.includes('programming') || s.includes('coding') || s.includes('dev')) {
+        return '💻 Dev resource';
     }
     
-    // Gaming
-    if (s.includes('steam') || s.includes('gaming') || s.includes('deck') || s.includes('game')) {
-        if (t.includes('game') || t.includes('play') || t.includes('performance')) {
-            why.push('Gaming relevance');
-        }
+    // Content type fallbacks
+    if (t.includes('how to') || t.includes('guide') || t.includes('tutorial')) {
+        return '📖 How-to guide';
+    }
+    if (t.includes('review') || t.includes('comparison') || t.includes('vs ')) {
+        return '🔍 Review/comparison';
+    }
+    if (t.includes('leak') || t.includes('rumor') || t.includes('report')) {
+        return '🤫 Leak/rumor';
+    }
+    if (t.includes('discussion') || t.includes('thoughts') || t.includes('opinion')) {
+        return '💭 Community discussion';
     }
     
-    // Crypto/Finance
-    if (s.includes('crypto') || s.includes('stock') || s.includes('dividend')) {
-        if (t.includes('price') || t.includes('market') || t.includes('btc') || t.includes('eth')) {
-            why.push('Market movement to watch');
-        }
-    }
-    
-    // Hardware
-    if (s.includes('raspberry') || s.includes('framework') || s.includes('xiaomi') || s.includes('quest')) {
-        if (t.includes('review') || t.includes('compare') || t.includes('vs')) {
-            why.push('Hardware insights for buyers');
-        }
-    }
-    
-    // Default if nothing specific
-    if (why.length === 0) {
-        if (t.includes('how to') || t.includes('guide') || t.includes('tutorial')) {
-            why.push('Useful guide/resource');
-        } else if (t.includes('question') || t.includes('help') || t.includes('issue')) {
-            why.push('Community discussion');
-        } else {
-            why.push('Trending in community');
-        }
-    }
-    
-    return why.join(' • ');
+    return '📌 Trending';
 }
 
 function parseRedditRSS(xml, subreddit) {
@@ -277,13 +294,13 @@ async function runEngine() {
         await new Promise(r => setTimeout(r, 800));
     }
 
-    // Sort ALL posts by importance and take top 15
+    // Sort ALL posts by importance and take top 30
     allPosts.sort((a, b) => b.importance - a.importance);
-    const top15 = allPosts.slice(0, 15);
+    const top30 = allPosts.slice(0, 30);
 
-    // Group top 15 back by subreddit for the data structure
+    // Group top 30 back by subreddit for the data structure
     const groupedBySub = {};
-    top15.forEach(post => {
+    top30.forEach(post => {
         if (!groupedBySub[post.subreddit]) {
             groupedBySub[post.subreddit] = [];
         }
@@ -347,7 +364,7 @@ async function runEngine() {
     // Summary
     console.log(`\n=== Summary ===`);
     console.log(`Fetched from ${redditSubs.length} subreddits`);
-    console.log(`Top 15 most important posts selected`);
+    console.log(`Top 30 most important posts selected`)
     console.log(`Subreddits with top posts: ${results.R.length}`);
     console.log(`YouTube: ${results.Y.length} videos`);
     console.log(`Twitter: Skipped`);

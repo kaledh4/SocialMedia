@@ -8,18 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0c;
-            --surface: #121215;
-            --accent: #8833ff;
-            --accent-glow: rgba(136, 51, 255, 0.4);
-            --text: #f0f0f5;
-            --text-dim: #94949e;
-            --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(255, 255, 255, 0.03);
+            --bg-primary: #09090b;
+            --bg-secondary: #0f0f12;
+            --bg-tertiary: #18181b;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(139, 92, 246, 0.25);
+            --accent-glow-strong: rgba(139, 92, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-hover: rgba(255, 255, 255, 0.04);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
 
         * {
@@ -27,180 +36,84 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            background-image: 
+                radial-gradient(ellipse at top, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            padding-bottom: 100px;
+            min-height: 100vh;
+            padding-bottom: 80px;
         }
 
         /* Main Container */
         .app-container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 24px 20px;
         }
 
+        /* Header */
         header {
-            padding: 80px 0 40px;
-            text-align: left;
+            padding: 48px 0 32px;
+            position: relative;
         }
 
         .date-badge {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
             font-weight: 500;
-            color: var(--text-dim);
-            letter-spacing: 0.5px;
+            color: var(--accent-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             margin-bottom: 12px;
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-glow-strong);
         }
 
         header h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 800;
-            letter-spacing: -2px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.25rem, 6vw, 3.25rem);
+            font-weight: 700;
+            letter-spacing: -1.5px;
             margin-bottom: 12px;
-            background: linear-gradient(to right, #fff, #888);
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         header p {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-            max-width: 500px;
-        }
-
-        /* Feed Style Sections */
-        .section-header {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 40px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-
-        .section-header span {
-            color: var(--text-dim);
-            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
             font-weight: 400;
-        }
-
-        .feed-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: transform 0.2s, border-color 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feed-item:hover {
-            border-color: rgba(136, 51, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .feed-item .source {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .feed-item h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            line-height: 1.3;
-            margin-bottom: 12px;
-        }
-
-        .feed-item h2 a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .feed-item p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 16px;
-        }
-
-        .feed-item .meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            font-weight: 500;
-        }
-
-        .feed-item .meta .tag {
-            background: var(--glass);
-            padding: 3px 10px;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-        }
-
-        .feed-item .meta .priority {
-            color: #fff;
-            background: rgba(136, 51, 255, 0.2);
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 0.5px;
-        }
-
-        .feed-item .meta .priority.critical {
-            background: rgba(255, 50, 50, 0.2);
-            color: #ff5555;
-            border: 1px solid rgba(255, 50, 50, 0.3);
-        }
-
-        /* YouTube Specific Style */
-        .Y-item {
-            border-left: 4px solid #ff0000;
-        }
-
-        .T-item {
-            border-left: 4px solid var(--accent);
-        }
-
-        .T-handle {
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 15px;
-            display: block;
+            max-width: 480px;
+            line-height: 1.5;
         }
 
         /* Filter Tabs */
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 8px;
+            margin: 24px 0 32px;
             overflow-x: auto;
-            padding-bottom: 10px;
+            padding-bottom: 4px;
             scrollbar-width: none;
         }
 
@@ -209,56 +122,335 @@
         }
 
         .tab {
-            padding: 8px 20px;
-            background: var(--surface);
+            padding: 10px 20px;
+            background: var(--bg-tertiary);
             border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--text-secondary);
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab:hover {
+            background: var(--glass-hover);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
         }
 
         .tab.active {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-color: transparent;
             color: white;
-            box-shadow: 0 4px 15px var(--accent-glow);
+            box-shadow: 0 4px 20px var(--accent-glow), 0 0 0 1px rgba(139, 92, 246, 0.1);
         }
 
+        /* Section Headers */
+        .section-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+        }
+
+        /* Feed Cards */
+        .feed-item {
+            background: linear-gradient(145deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feed-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feed-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px var(--border-hover),
+                0 4px 20px var(--accent-glow);
+        }
+
+        .feed-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Card Source Tag - Pill Style */
+        .feed-item .source {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            background: rgba(139, 92, 246, 0.1);
+            padding: 5px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .feed-item .source::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Card Title */
+        .feed-item h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .feed-item h2 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .feed-item h2 a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Why Care Badge */
+        .feed-item .why-care {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        /* Card Description */
+        .feed-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        /* Meta Info */
+        .feed-item .meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .feed-item .meta .tag {
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .feed-item .meta .priority {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+            color: var(--accent-light);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .feed-item .meta .priority.critical {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .feed-item .meta .priority.watch {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Source Type Indicators */
+        .feed-item.Y-item {
+            border-left: 3px solid #ff0000;
+        }
+
+        .feed-item.R-item {
+            border-left: 3px solid #ff4500;
+        }
+
+        .feed-item.T-item {
+            border-left: 3px solid var(--accent);
+        }
+
+        .Y-item .source {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+            border-color: rgba(255, 0, 0, 0.2);
+        }
+
+        .Y-item .source::before {
+            background: #ff0000;
+        }
+
+        /* Loading States */
         .loading-shimmer {
-            height: 200px;
-            background: linear-gradient(90deg, var(--surface) 25%, var(--glass) 50%, var(--surface) 75%);
+            height: 180px;
+            background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--glass) 50%, var(--bg-tertiary) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
         }
 
         @keyframes shimmer {
             0% {
                 background-position: 200% 0;
             }
-
             100% {
                 background-position: -200% 0;
             }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state p {
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 640px) {
+            .app-container {
+                padding: 16px;
+            }
+
+            header {
+                padding: 32px 0 24px;
+            }
+
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                letter-spacing: -1px;
+            }
+
+            header p {
+                font-size: 0.9rem;
             }
 
             .feed-item {
-                padding: 20px;
+                padding: 18px;
+                border-radius: 14px;
             }
 
             .feed-item h2 {
-                font-size: 1.25rem;
+                font-size: 1.05rem;
             }
+
+            .feed-item p {
+                font-size: 0.85rem;
+                -webkit-line-clamp: 2;
+            }
+
+            .feed-item .meta {
+                gap: 8px;
+            }
+
+            .tabs {
+                gap: 6px;
+                margin: 20px 0 24px;
+            }
+
+            .tab {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Image handling for mobile */
+        .feed-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 12px 0;
+            object-fit: cover;
+        }
+
+        @media (max-width: 640px) {
+            .feed-item img {
+                border-radius: 8px;
+                margin: 10px -18px;
+                max-width: calc(100% + 36px);
+                width: calc(100% + 36px);
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states for accessibility */
+        .tab:focus-visible,
+        .feed-item h2 a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -267,19 +459,19 @@
 
     <div class="app-container">
         <header>
-            <span class="date-badge" id="current-date">FEB 09, 2026</span>
+            <span class="date-badge" id="current-date">Loading...</span>
             <h1>Intelligence</h1>
             <p>Your automated briefing on ASI, Batteries, and Market Breakthroughs.</p>
         </header>
 
-        <div class="tabs">
-            <div class="tab active" onclick="filter('all')">Everything</div>
-            <div class="tab" onclick="filter('R')">R</div>
-            <div class="tab" onclick="filter('Y')">Y</div>
-            <div class="tab" onclick="filter('T')">T</div>
+        <div class="tabs" role="tablist">
+            <button class="tab active" role="tab" onclick="filter('all')" aria-selected="true">Everything</button>
+            <button class="tab" role="tab" onclick="filter('R')" aria-selected="false">Reddit</button>
+            <button class="tab" role="tab" onclick="filter('Y')" aria-selected="false">YouTube</button>
+            <button class="tab" role="tab" onclick="filter('T')" aria-selected="false">Twitter</button>
         </div>
 
-        <div id="feed">
+        <div id="feed" role="feed">
             <div class="loading-shimmer"></div>
             <div class="loading-shimmer"></div>
             <div class="loading-shimmer"></div>
@@ -295,20 +487,28 @@
                 const res = await fetch('data.json');
                 currentData = await res.json();
 
-                // Format date - Elegant long format
+                // Format date
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                 document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
 
                 render();
             } catch (err) {
-                document.getElementById('feed').innerHTML = '<p style="text-align:center; color: var(--text-dim)">No intelligence gathered yet. Run the engine to populate the feed.</p>';
+                document.getElementById('feed').innerHTML = `
+                    <div class="empty-state">
+                        <p>No intelligence gathered yet. Run the engine to populate the feed.</p>
+                    </div>
+                `;
             }
         }
 
         function filter(type) {
             currentFilter = type;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
             event.target.classList.add('active');
+            event.target.setAttribute('aria-selected', 'true');
             render();
         }
 
@@ -323,14 +523,17 @@
                 let score = 50;
                 const t = title.toLowerCase();
                 const s = source.toLowerCase();
+                
+                // High-value keywords
                 if (t.includes('breakthrough') || t.includes('battery')) score += 40;
                 if (t.includes('asi') || t.includes('agi') || t.includes('sentience')) score += 35;
                 if (s.includes('elon') || s.includes('musk') || s.includes('spacex')) score += 25;
                 if (s.includes('cathie') || s.includes('wood') || s.includes('ark')) score += 20;
+                
                 return score;
             }
 
-            // Collect and normalize Reddit
+            // Collect Reddit
             if (currentData.R) {
                 currentData.R.forEach(sub => {
                     sub.posts.forEach(post => {
@@ -345,7 +548,7 @@
                             title: title,
                             url: post.url,
                             desc: post.summary || "",
-                            whyCare: post.whyCare || "Trending in community",
+                            whyCare: post.whyCare || null,
                             importance: importance,
                             meta: importance > 80 ? 'Critical' : 'Insight',
                             date: new Date()
@@ -354,28 +557,29 @@
                 });
             }
 
-            // Collect and normalize YouTube
+            // Collect YouTube
             if (currentData.Y) {
                 currentData.Y.forEach(vid => {
                     const title = vid.title.trim();
                     if (seenTitles.has(title)) return;
                     seenTitles.add(title);
 
-                    const importance = scoreTitle(title, vid.channel) + 5; // Preference to video
+                    const importance = scoreTitle(title, vid.channel) + 5;
                     items.push({
                         type: 'Y',
                         source: vid.channel,
                         title: title,
                         url: vid.url,
                         desc: vid.transcript.substring(0, 180) + '...',
+                        whyCare: null,
                         importance: importance,
-                        meta: importance > 80 ? 'Watch Now' : 'Featured',
+                        meta: 'Watch',
                         date: new Date(vid.publishedAt)
                     });
                 });
             }
 
-            // Collect and normalize Twitter
+            // Collect Twitter
             if (currentData.T) {
                 currentData.T.forEach(account => {
                     account.tweets.forEach(tweet => {
@@ -390,15 +594,16 @@
                             title: tweet.text.substring(0, 120) + (tweet.text.length > 120 ? '...' : ''),
                             url: tweet.url,
                             desc: tweet.text.length > 120 ? tweet.text : "",
+                            whyCare: null,
                             importance: importance,
-                            meta: 'T Update',
+                            meta: 'Update',
                             date: new Date()
                         });
                     });
                 });
             }
 
-            // SORT BY IMPORTANCE
+            // Sort by importance
             items.sort((a, b) => b.importance - a.importance);
 
             const filteredItems = currentFilter === 'all'
@@ -406,23 +611,29 @@
                 : items.filter(i => i.type === currentFilter);
 
             if (filteredItems.length === 0) {
-                feed.innerHTML = '<p style="text-align:center; color: var(--text-dim)">No items found for this category.</p>';
+                feed.innerHTML = `
+                    <div class="empty-state">
+                        <p>No items found for this category.</p>
+                    </div>
+                `;
                 return;
             }
 
             filteredItems.forEach(item => {
-                const card = document.createElement('div');
+                const card = document.createElement('article');
                 card.className = `feed-item ${item.type}-item`;
 
                 let priorityClass = 'priority';
                 if (item.meta.toLowerCase() === 'critical' || item.importance > 85) {
                     priorityClass += ' critical';
+                } else if (item.meta.toLowerCase() === 'watch') {
+                    priorityClass += ' watch';
                 }
 
                 card.innerHTML = `
                     <span class="source">${item.source}</span>
-                    <h2><a href="${item.url}" target="_blank">${item.title}</a></h2>
-                    ${item.whyCare ? `<p style="color: var(--accent); font-weight: 500; margin-bottom: 8px;">💡 ${item.whyCare}</p>` : ''}
+                    <h2><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h2>
+                    ${item.whyCare ? `<div class="why-care">${item.whyCare}</div>` : ''}
                     ${item.desc ? `<p>${item.desc}</p>` : ''}
                     <div class="meta">
                         <span class="tag">${item.type.toUpperCase()}</span>
