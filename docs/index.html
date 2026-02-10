@@ -345,6 +345,7 @@
                             title: title,
                             url: post.url,
                             desc: post.summary || "",
+                            whyCare: post.whyCare || "Trending in community",
                             importance: importance,
                             meta: importance > 80 ? 'Critical' : 'Insight',
                             date: new Date()
@@ -421,6 +422,7 @@
                 card.innerHTML = `
                     <span class="source">${item.source}</span>
                     <h2><a href="${item.url}" target="_blank">${item.title}</a></h2>
+                    ${item.whyCare ? `<p style="color: var(--accent); font-weight: 500; margin-bottom: 8px;">💡 ${item.whyCare}</p>` : ''}
                     ${item.desc ? `<p>${item.desc}</p>` : ''}
                     <div class="meta">
                         <span class="tag">${item.type.toUpperCase()}</span>

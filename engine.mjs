@@ -43,6 +43,66 @@ function fetchRSS(url) {
     }
 }
 
+function generateWhyCare(title, subreddit) {
+    // Generate a brief "why you should care" summary based on keywords
+    const t = title.toLowerCase();
+    const s = subreddit.toLowerCase();
+    
+    let why = [];
+    
+    // Technology breakthroughs
+    if (t.includes('breakthrough') || t.includes('discovery') || t.includes('first time')) {
+        why.push('Major advancement in the field');
+    }
+    if (t.includes('release') || t.includes('launch') || t.includes('announce')) {
+        why.push('New product or update available');
+    }
+    if (t.includes('update') || t.includes('patch') || t.includes('fix')) {
+        why.push('Important update to be aware of');
+    }
+    
+    // AI/Tech specific
+    if (s.includes('ai') || s.includes('artificial') || s.includes('llm') || s.includes('gpt')) {
+        if (t.includes('model') || t.includes('gpt') || t.includes('claude') || t.includes('llama')) {
+            why.push('AI model development news');
+        }
+    }
+    
+    // Gaming
+    if (s.includes('steam') || s.includes('gaming') || s.includes('deck') || s.includes('game')) {
+        if (t.includes('game') || t.includes('play') || t.includes('performance')) {
+            why.push('Gaming relevance');
+        }
+    }
+    
+    // Crypto/Finance
+    if (s.includes('crypto') || s.includes('stock') || s.includes('dividend')) {
+        if (t.includes('price') || t.includes('market') || t.includes('btc') || t.includes('eth')) {
+            why.push('Market movement to watch');
+        }
+    }
+    
+    // Hardware
+    if (s.includes('raspberry') || s.includes('framework') || s.includes('xiaomi') || s.includes('quest')) {
+        if (t.includes('review') || t.includes('compare') || t.includes('vs')) {
+            why.push('Hardware insights for buyers');
+        }
+    }
+    
+    // Default if nothing specific
+    if (why.length === 0) {
+        if (t.includes('how to') || t.includes('guide') || t.includes('tutorial')) {
+            why.push('Useful guide/resource');
+        } else if (t.includes('question') || t.includes('help') || t.includes('issue')) {
+            why.push('Community discussion');
+        } else {
+            why.push('Trending in community');
+        }
+    }
+    
+    return why.join(' • ');
+}
+
 function parseRedditRSS(xml, subreddit) {
     const posts = [];
     if (!xml) return posts;
@@ -74,13 +134,17 @@ function parseRedditRSS(xml, subreddit) {
                     .substring(0, 300);
             }
 
+            const title = titleMatch[1];
+            const whyCare = generateWhyCare(title, subreddit);
+
             posts.push({
-                title: titleMatch[1],
+                title: title,
                 url: linkMatch[1],
                 summary: summary,
+                whyCare: whyCare,
                 author: authorMatch ? authorMatch[1] : 'unknown',
                 publishedAt: publishedMatch ? publishedMatch[1] : new Date().toISOString(),
-                score: 0, // RSS doesn't include score
+                score: 0,
                 num_comments: 0
             });
         }
