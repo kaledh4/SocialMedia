@@ -1,0 +1,83 @@
+{
+    "R": {
+        "subreddits": [
+            "abxylute",
+            "ArtificialInteligence",
+            "Bazzite",
+            "binance",
+            "BoosteroidCommunity",
+            "cardano",
+            "ChatGPT",
+            "CrackWatch",
+            "CryptoCurrency",
+            "cybertruck",
+            "dietpi",
+            "dividends",
+            "django",
+            "emby",
+            "EmuDeck",
+            "federalreserve",
+            "framework",
+            "gamecraftai",
+            "GeForceNOW",
+            "GTA6",
+            "IndieDev",
+            "IntelArc",
+            "linux_gaming",
+            "LocalLLaMA",
+            "losslessscaling",
+            "moltbot",
+            "MSIClaw",
+            "NobaraProject",
+            "Proxmox",
+            "Python",
+            "QuantumComputing",
+            "QuantumPhysics",
+            "Quest3",
+            "raspberry_pi",
+            "revancedapp",
+            "Schedule_I",
+            "SideProject",
+            "singularity",
+            "SteamDeck",
+            "stocks",
+            "StremioAddons",
+            "teslamotors",
+            "uevr",
+            "Unity3D",
+            "WindowsOnDeck",
+            "WindowsonARM",
+            "Xiaomi",
+            "XiaomiPad6",
+            "xiaomipad6pro",
+            "zlibrary"
+        ],
+        "digest_time": "17:00",
+        "rules": "focus on technical breakthroughs, AI/ASI/AGI, gaming tech, crypto, and hardware. No memes."
+    },
+    "Y": {
+        "channels": [
+            "@SpaceX",
+            "@Tesla",
+            "@TheLimitingFactor",
+            "@ColdFusion",
+            "@WesRoth",
+            "@lexfridman",
+            "@DaveLeeInvesting"
+        ],
+        "digest_time": "08:00"
+    },
+    "T": {
+        "handles": [
+            "elonmusk",
+            "CathieDWood",
+            "SawyerMerritt",
+            "WholeMarsBlog"
+        ],
+        "auth_token": "",
+        "ct0": ""
+    },
+    "general": {
+        "timezone": "America/New_York"
+    }
+}
