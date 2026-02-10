@@ -4,47 +4,52 @@ Everything you need for your daily digest is here.
 
 ## 📁 Project Structure
 
-- `index.js`: Main entry point. Orchestrates all digests and pushes to GitHub.
-- `reddit-digest.js`: Fetches top posts from R subreddits.
-- `youtube-digest.js`: Summarizes new videos from Y channels.
-- `twitter-analysis.js`: Performs qualitative analysis on T accounts.
-- `config.json`: **The central configuration file** where you list your R subreddits, Y channels, and T handles.
-- `setup-cron.sh`: Run this to automate the digests via system cron.
-- `.gitignore`: Prevents sensitive info from being pushed to GitHub.
+- `engine.mjs`: Main entry point. Lightweight RSS-based intelligence engine.
+- `config.json`: **The central configuration file** where you list your sources.
+- `docs/index.html`: Live dashboard for GitHub Pages.
+- `docs/data.json`: Intelligence data consumed by the dashboard.
 
-## 🚀 How to Set It Up
+## 🚀 How It Works
 
-1.  **Configure Accounts**: Update `config.json` with the R subreddits and Y channels you want to follow.
-2.  **API Keys & Auth**:
-    - **Y**: Run `openclaw task "Set up my Y-full skill"` to get your `TRANSCRIPT_API_KEY`. Save it in a `.env` file in this directory.
-    - **T**: Log into `x.com` in your browser. Use the `bird` tool to authenticate or provide `auth-token` and `ct0` in the `.env` file.
-    - **GitHub**: Ensure your VPS has SSH access to `https://github.com/kaledh4/SocialMedia` so the push works.
-3.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-4.  **Schedule Everything**:
-    ```bash
-    bash setup-cron.sh
-    ```
+1. **Configure Sources**: Update `config.json` with topics and channels you want to follow.
+2. **Run the Engine**: Fetches latest content via RSS feeds (no APIs, no rate limits).
+3. **View Dashboard**: Results pushed to GitHub Pages automatically.
 
-## 📊 Where to see the results?
+## 📊 Configuration
 
-The daily digests are automatically pushed to [kaledh4/SocialMedia](https://github.com/kaledh4/SocialMedia) as `DAILY_BRIEF.md`.
+Edit `config.json` to customize:
+
+```json
+{
+  "R": {
+    "subreddits": ["energy", "Batteries", "Singularity"],
+    "rules": "focus on technical breakthroughs"
+  },
+  "Y": {
+    "channels": ["@SpaceX", "@Tesla", "@ColdFusion"]
+  },
+  "general": {
+    "timezone": "America/New_York"
+  }
+}
+```
 
 ## 🛠 Manual Execution
 
-To run everything manually:
 ```bash
-node index.js --all
+node engine.mjs
 ```
 
-Or run specific parts:
-```bash
-node index.js --R
-node index.js --Y
-node index.js --T
-```
+## 📈 Dashboard
+
+View the live intelligence feed at the GitHub Pages URL.
+
+## ⚡ Features
+
+- **Zero API dependencies** - Pure RSS/Atom feeds
+- **Low memory footprint** - Designed for 1GB RAM environments
+- **No rate limiting** - Browser-friendly approach
+- **Automated scheduling** - Cron-ready
 
 ---
-*Created by Antigravity*
+*Intelligence automation for the curious mind.*

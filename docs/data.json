@@ -1,27 +1,107 @@
 {
   "date": "2026-02-10",
-  "R": [],
-  "Y": [],
-  "T": [
+  "R": [
     {
-      "handle": "elonmusk",
-      "method": "failed",
-      "tweets": []
+      "subreddit": "energy",
+      "posts": [
+        {
+          "title": "Goodbye to the idea that solar panels “die” after 25 years. A new study says the warranty does not mark the end, and performance can last for decades. Arrays built in the late 1980s still produced more than 80% of their original power. The long-term economics look better than many people believe.",
+          "url": "https://www.reddit.com/r/energy/comments/1qmprzr/goodbye_to_the_idea_that_solar_panels_die_after/",
+          "summary": "<table> <tr><td> <a href=\"https://www.reddit.com/r/energy/comments/1qmprzr/goodbye_to_the_idea_that_solar_panels_die_after/\"> <img src=\"https://external-preview.redd.it/nJl0HtpqMOdlQLyOXS8CoavurooxjZLpCOzO8Mp6efc.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=9338756e10d0beb3de6253ee148b76c4e64d5",
+          "author": "/u/mafco",
+          "publishedAt": "2026-01-25T17:43:13+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Thought solar was only for “rich people”… turns out I was wrong",
+          "url": "https://www.reddit.com/r/energy/comments/1r0zso4/thought_solar_was_only_for_rich_people_turns_out/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>for the longest time i thought solar was just for big fancy houses or people with way too much extra money. Like yeah?? cool for them, must be nice lol. But my electric bill kept creeping up every year and I got tired of pretending it was normal. i started looking i",
+          "author": "/u/Witty-Double5907",
+          "publishedAt": "2026-02-10T12:47:07+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Cuba says airlines can no longer refuel on the island as US blockade deepens energy crisis",
+          "url": "https://www.reddit.com/r/energy/comments/1r0cnqu/cuba_says_airlines_can_no_longer_refuel_on_the/",
+          "summary": "<table> <tr><td> <a href=\"https://www.reddit.com/r/energy/comments/1r0cnqu/cuba_says_airlines_can_no_longer_refuel_on_the/\"> <img src=\"https://external-preview.redd.it/Vc5rVbgwqqWZzT4M-4aD6-Uachc3ttJt9dlfPlFEK4k.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=73de6cc9e49304b3f5c7a3c3eb800676ea9255",
+          "author": "/u/yahoonews",
+          "publishedAt": "2026-02-09T18:45:54+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Trump’s Fuel Embargo Forces Cuba to Take Emergency Steps to Avert Catastrophe | The Trump administration has threatened to slap tariffs on any country that sells oil to the Cuban government.",
+          "url": "https://www.reddit.com/r/energy/comments/1r0l8oa/trumps_fuel_embargo_forces_cuba_to_take_emergency/",
+          "summary": "<table> <tr><td> <a href=\"https://www.reddit.com/r/energy/comments/1r0l8oa/trumps_fuel_embargo_forces_cuba_to_take_emergency/\"> <img src=\"https://external-preview.redd.it/ta6z62m4qDghBef4n6nUe-gUxIFNFFefxIHs2c3cGQU.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=69162e7ce716583b4175b8a7bb2030700e1",
+          "author": "/u/InsaneSnow45",
+          "publishedAt": "2026-02-10T00:06:35+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Trump’s Energy Policy Isn’t About Security. It’s About Power — and It’s Costing America the Future. If national security were truly the goal, we would see an all-of-the-above energy strategy that strengthens resilience, lowers costs, and builds industries that can compete globally.",
+          "url": "https://www.reddit.com/r/energy/comments/1r0742w/trumps_energy_policy_isnt_about_security_its/",
+          "summary": "&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/mafco\"> /u/mafco </a> <br/> <span><a href=\"https://www.independent.com/2026/02/08/trumps-energy-policy-isnt-about-security/\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/energy/comments/1r0742w/trumps_energy_policy_isnt",
+          "author": "/u/mafco",
+          "publishedAt": "2026-02-09T15:26:37+00:00",
+          "score": 0,
+          "num_comments": 0
+        }
+      ]
     },
     {
-      "handle": "CathieDWood",
-      "method": "failed",
-      "tweets": []
-    },
-    {
-      "handle": "SawyerMerritt",
-      "method": "failed",
-      "tweets": []
-    },
-    {
-      "handle": "WholeMarsBlog",
-      "method": "failed",
-      "tweets": []
+      "subreddit": "Batteries",
+      "posts": [
+        {
+          "title": "50 year old Eveready",
+          "url": "https://www.reddit.com/r/batteries/comments/1r0h14x/50_year_old_eveready/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>Found this a box with a super-8 movie camera in my dad's shed. It's at least 1970's vintage. Kinda impressed.</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href=\"https://www.reddit.com/user/tynedelman\"> /u/tynedelman </a> <br/> <span><a href=\"https://i.redd.i",
+          "author": "/u/tynedelman",
+          "publishedAt": "2026-02-09T21:23:23+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Can i save my battery ?",
+          "url": "https://www.reddit.com/r/batteries/comments/1r10uy2/can_i_save_my_battery/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>Hello all, living in my car, im freezing in the winter right now, so i bought a 2kw diesel heater.<br/> Im super broke but i needed a battery to run it, so i ordered a 100Ah lifepo4 from aliexpress. I chose one with hundreds of good reviews.</p> <p>- They didnt send",
+          "author": "/u/BlousonCuir",
+          "publishedAt": "2026-02-10T13:33:49+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Replacing battery pack?",
+          "url": "https://www.reddit.com/r/batteries/comments/1r10mq0/replacing_battery_pack/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>The stacked and spot welded 18650s no longer hold a charge for my heated mug</p> <p>Can I source another individual spot welded battery pack or do I have to bring out my solder remove and reattach the PCB?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href=\"h",
+          "author": "/u/Lemonyhampeapasta",
+          "publishedAt": "2026-02-10T13:24:17+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "What voltage to use when converting mAh to Wh for powerbank?",
+          "url": "https://www.reddit.com/r/batteries/comments/1r0vep4/what_voltage_to_use_when_converting_mah_to_wh_for/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>I'm flying tomorrow and I'm checking if my powerbank is allowed as a carry on. My airline uses Wh to determine capacity, but my powerbank doesn't indicate what Wh it is, only mAh. I already know the formula to use when converting mAh to Wh, but what voltage do I use",
+          "author": "/u/EJairus12",
+          "publishedAt": "2026-02-10T08:33:04+00:00",
+          "score": 0,
+          "num_comments": 0
+        },
+        {
+          "title": "Treadmill motor voltage with series batteries",
+          "url": "https://www.reddit.com/r/batteries/comments/1r0zq2e/treadmill_motor_voltage_with_series_batteries/",
+          "summary": "<!-- SC_OFF --><div class=\"md\"><p>I have a treadmill motor i'm using for a project and it is rated 130v \"treadmill duty\" and 100v \"continuous\" duty. Would it be safe to run it with two 60v batteries in a series producing 120v, or would I burn it up? Thanks.</p> </div><!-- SC_ON --> &#32; submitted b",
+          "author": "/u/mike4354",
+          "publishedAt": "2026-02-10T12:43:33+00:00",
+          "score": 0,
+          "num_comments": 0
+        }
+      ]
     }
-  ]
+  ],
+  "Y": [],
+  "T": null
 }
