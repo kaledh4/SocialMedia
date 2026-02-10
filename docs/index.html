@@ -297,7 +297,7 @@
 
                 // Format date - Elegant long format
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                document.getElementById('current-date').innerText = date.toLocaleDateString('en-US', options);
+                document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
 
                 render();
             } catch (err) {
