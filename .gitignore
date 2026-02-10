@@ -1,0 +1,13 @@
+node_modules/
+.env
+config.json
+*.log
+reports/
+seen-videos.txt
+auth.json
+# Hide source code for security
+index.js
+reddit-digest.js
+setup-cron.sh
+twitter-analysis.js
+youtube-digest.js

@@ -1,0 +1,42 @@
+{
+    "R": {
+        "subreddits": [
+            "energy",
+            "Batteries",
+            "Singularity",
+            "artificial",
+            "Futurology",
+            "TeslaMotors",
+            "SpaceX",
+            "ArkInvest"
+        ],
+        "digest_time": "17:00",
+        "rules": "focus on technical breakthroughs in batteries, AI/ASI/AGI, and movements by Elon Musk and Cathie Wood. No memes."
+    },
+    "Y": {
+        "channels": [
+            "@ARKInvest",
+            "@SpaceX",
+            "@Tesla",
+            "@TheLimitingFactor",
+            "@ColdFusion",
+            "@WesRoth",
+            "@lexfridman",
+            "@DaveLeeInvesting"
+        ],
+        "digest_time": "08:00"
+    },
+    "T": {
+        "handles": [
+            "elonmusk",
+            "CathieDWood",
+            "SawyerMerritt",
+            "WholeMarsBlog"
+        ],
+        "auth_token": "",
+        "ct0": ""
+    },
+    "general": {
+        "timezone": "America/New_York"
+    }
+}
